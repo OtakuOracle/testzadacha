@@ -6,12 +6,12 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace bank
+namespace testzadacha
 {
     public class account
     {
-        private string num;
-        private string name;
+        public string num;
+        public string name;
         public float sum;
         public float summ;
         public int index;

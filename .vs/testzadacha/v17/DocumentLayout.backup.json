@@ -1,0 +1,70 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\User\\Desktop\\testzadacha\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{1CDDF77E-1562-4FB7-B2D3-F3EB0ED96346}|TestLab\\TestLab.csproj|c:\\users\\user\\desktop\\testzadacha\\testlab\\unittest1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1CDDF77E-1562-4FB7-B2D3-F3EB0ED96346}|TestLab\\TestLab.csproj|solutionrelative:testlab\\unittest1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3F7F481F-3122-4B59-99A3-3841F199BF63}|testzadacha\\testzadacha.csproj|c:\\users\\user\\desktop\\testzadacha\\testzadacha\\account.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3F7F481F-3122-4B59-99A3-3841F199BF63}|testzadacha\\testzadacha.csproj|solutionrelative:testzadacha\\account.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3F7F481F-3122-4B59-99A3-3841F199BF63}|testzadacha\\testzadacha.csproj|c:\\users\\user\\desktop\\testzadacha\\testzadacha\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3F7F481F-3122-4B59-99A3-3841F199BF63}|testzadacha\\testzadacha.csproj|solutionrelative:testzadacha\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 100,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\testzadacha\\testzadacha\\Program.cs",
+              "RelativeDocumentMoniker": "testzadacha\\Program.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\testzadacha\\testzadacha\\Program.cs",
+              "RelativeToolTip": "testzadacha\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-09T11:44:32.414Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "account.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\testzadacha\\testzadacha\\account.cs",
+              "RelativeDocumentMoniker": "testzadacha\\account.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\testzadacha\\testzadacha\\account.cs",
+              "RelativeToolTip": "testzadacha\\account.cs",
+              "ViewState": "AgIAADwAAAAAAAAAAAAcwA0AAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-09T11:44:29.028Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "UnitTest1.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\testzadacha\\TestLab\\UnitTest1.cs",
+              "RelativeDocumentMoniker": "TestLab\\UnitTest1.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\testzadacha\\TestLab\\UnitTest1.cs",
+              "RelativeToolTip": "TestLab\\UnitTest1.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAQwBcAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-09T11:43:39.088Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
