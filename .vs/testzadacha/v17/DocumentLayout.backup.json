@@ -22,8 +22,12 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 3,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e1b7d1f8-9b3c-49b1-8f4f-bfc63a88835d}"
+            },
             {
               "$type": "Document",
               "DocumentIndex": 2,
@@ -46,8 +50,7 @@
               "RelativeToolTip": "testzadacha\\account.cs",
               "ViewState": "AgIAADwAAAAAAAAAAAAcwA0AAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-09T11:44:29.028Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-09T11:44:29.028Z"
             },
             {
               "$type": "Document",
@@ -57,7 +60,7 @@
               "RelativeDocumentMoniker": "TestLab\\UnitTest1.cs",
               "ToolTip": "C:\\Users\\User\\Desktop\\testzadacha\\TestLab\\UnitTest1.cs",
               "RelativeToolTip": "TestLab\\UnitTest1.cs",
-              "ViewState": "AgIAABMAAAAAAAAAAAAQwBcAAAAIAAAAAAAAAA==",
+              "ViewState": "AgIAALUAAAAAAAAAAAAqwOUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-09T11:43:39.088Z",
               "EditorCaption": ""
