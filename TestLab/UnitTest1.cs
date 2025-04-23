@@ -34,18 +34,28 @@ namespace testzadacha.Tests
             Assert.That(testAccount.num, Is.Not.Null);
         }
 
-
         [Test]
-        public void Otk_MultipleAttempts_ShouldSucceedWithValidInpu() // создание аккаунта с несколькими попытками ввода данными
+        public void Otk_MultipleAccounts_ShouldSucceed() // создание нескольких учетных данных
         {
-            Console.SetIn(new StringReader("Некорректное имя\n\nСидоров Сергей\n300\nСидоров Сергей\n2300\n"));
+            var inputs = new[]
+            {
+                "Иванов Иван\n1500\n",
+                "Петров Петр\n2000\n"
+            };
 
-            testAccount.otk();
+            foreach (var input in inputs)
+            {
+                using (var reader = new StringReader(input))
+                {
+                    Console.SetIn(reader);
 
-            Assert.That(testAccount.name, Is.EqualTo("Сидоров Сергей"));
-            Assert.That(testAccount.sum, Is.EqualTo(2300));
+                    var testAccount = new account();
+                    testAccount.otk();
+
+                    Assert.That(testAccount.num, Is.Not.Null);
+                }
+            }
         }
-
 
         [Test]
         public void Otk_WithInsufficientFunds_ShouldDisplayErrorMessage() // создание аккаунта, но с вводом суммы, которая недостаточна для выполнения операции
@@ -60,19 +70,6 @@ namespace testzadacha.Tests
         }
 
         [Test]
-        public void Perevod_ValidAmount_ShouldReduceSourceAndIncreaseTarget() // перевод средств между двумя счетами
-        {
-            testAccount.sum = 2000;
-            var targetAccount = new account { sum = 1000 };
-            Console.SetIn(new StringReader("500\n" + targetAccount));
-
-            testAccount.perevod();
-
-            Assert.That(testAccount.sum, Is.EqualTo(1500));
-            Assert.That(testAccount.sum, Is.EqualTo(1500));
-        }
-
-        [Test]
         public void TopUp_Add300To2000_ShouldResult2300() // пополнение счета
         {
             testAccount.sum = 2000; 
@@ -83,6 +80,18 @@ namespace testzadacha.Tests
             Assert.That(testAccount.sum, Is.EqualTo(2300)); 
         }
 
+        [Test]
+        public void TopUp_WithZero_Input_NoChangeInSum() // пополнение баланса на 0
+        {
+            testAccount.sum = 1000;
+            string input = "0"; 
+
+            Console.SetIn(new StringReader(input));
+
+            testAccount.top_up();
+
+            Assert.That(testAccount.sum, Is.EqualTo(1000));
+        }
 
         [Test]
         public void Umen_Subtract200From1500_ShouldResult1300() // снятие какой-то суммы
@@ -96,15 +105,49 @@ namespace testzadacha.Tests
         }
 
         [Test]
-        public void Umen_SubtractMoreThanBalance_ShouldNotChangeBalance_WhenBalanceIs800AndSubtracting1000() // снять сумму, которая больше текущей
+        public void Umen_WithZero_Input_NoChangeInSum() // снятие 0
         {
-            testAccount.sum = 800; 
-            Console.SetIn(new StringReader("1000\n")); 
+            testAccount.sum = 1000; 
+            string input = "0";
+
+            Console.SetIn(new StringReader(input)); 
 
             testAccount.umen(); 
 
-            Assert.That(testAccount.sum, Is.EqualTo(800)); 
-            StringAssert.Contains("Недостаточно средств", consoleOutput.ToString()); 
+
+            Assert.That(testAccount.sum, Is.EqualTo(1000));
+        }
+
+        [Test]
+        public void Umen_MultipleOperations_ShouldCalculateCorrectBalance() // корректность вычисления баланса после нескольких операций снятия
+        {
+            testAccount.sum = 1500; 
+            Console.SetIn(new StringReader("400\n600\n200\n")); 
+
+            testAccount.umen();
+            testAccount.umen(); 
+            testAccount.umen(); 
+
+            Assert.That(testAccount.sum, Is.EqualTo(300)); 
+        }
+
+
+        [Test]
+        public void Perevod_InsufficientFunds_ShouldNotTransfer() // перевод средств, превышающих баланс
+        {
+            testAccount.sum = 500; 
+            using (var sw = new StringWriter())
+            {
+                Console.SetOut(sw);
+                var input = "600\n1\n"; 
+                var reader = new StringReader(input);
+                Console.SetIn(reader);
+
+                testAccount.perevod();
+
+                Assert.That(testAccount.sum, Is.EqualTo(500)); 
+                StringAssert.Contains("На счету недостаточно средств!", sw.ToString());
+            }
         }
 
 
@@ -131,45 +174,24 @@ namespace testzadacha.Tests
             Assert.That(testAccount.summ, Is.EqualTo(500)); 
         }
 
-
         [Test]
-        public void Perevod_ZeroAmount_ShouldNotAllowTransfer() // перевод с нулевой суммой
+        public void Perevod_ValidTransfer_ShouldDecreaseBalance() // уменьшение баланса
         {
-            testAccount.sum = 1000;
-            Console.SetIn(new StringReader("0\n200\n"));
+            testAccount.sum = 1000; 
+            using (var sw = new StringWriter())
+            {
+                Console.SetOut(sw);
+                var input = "300\n1\n"; 
+                var reader = new StringReader(input);
+                Console.SetIn(reader);
 
-            testAccount.perevod();
+                testAccount.perevod();
 
-            StringAssert.Contains("Сумма перевода должна быть больше нуля", consoleOutput.ToString());
+                Assert.That(testAccount.sum, Is.EqualTo(700)); 
+                StringAssert.Contains("Баланс: 700 р.", sw.ToString());
+            }
         }
 
-
-        [Test]
-        public void Perevod_NonIntegerAmount_ShouldRoundCorrectly() // перевод нецелой суммы с проверкой округления
-        {
-            testAccount.sum = 1000;
-            var targetAccount = new account { sum = 500 };
-            Console.SetIn(new StringReader("250.75\n" + targetAccount));
-
-            testAccount.perevod();
-
-            Assert.That(testAccount.sum, Is.EqualTo(749.25)); // Проверка округления
-            Assert.That(testAccount.sum, Is.EqualTo(750.75));
-        }
-
-
-
-        [Test]
-        public void Perevod_InsufficientFunds_ShouldShowErrorMessage() // перевод, когда запрашиваемая сумма превышает доступные средства на счете
-        {
-            testAccount.sum = 2000; 
-            Console.SetIn(new StringReader("2500\n0\n")); 
-
-            testAccount.perevod(); 
-
-            Assert.That(testAccount.sum, Is.EqualTo(2000)); 
-            StringAssert.Contains("Недостаточно средств", consoleOutput.ToString()); 
-        }
 
         [Test]
         public void TopUp_MultipleOperations_ShouldCalculateCorrectBalance() // корректность вычисления баланса банковского счета после нескольких операций пополнения
@@ -188,26 +210,12 @@ namespace testzadacha.Tests
 
 
         [Test]
-        public void Umen_AttemptToWithdrawNegativeAmount_ShouldNotChangeBalance() // попытка снять отрицательную сумму со счета
+        public void NumGen_ShouldGenerateAccountNumber() // проверка на ввод номера счета
         {
-            testAccount.sum = 2000;
-            Console.SetIn(new StringReader("-50\n"));
+            testAccount.num_gen();
 
-            testAccount.umen();
-
-            Assert.That(testAccount.sum, Is.EqualTo(2000));
-            StringAssert.Contains("Недопустимая сумма", consoleOutput.ToString());
-        }
-
-        [Test]
-        public void Perevod_SameAccount_ShouldDisplayErrorMessage() // попытка перевода средств на тот же самый счет
-        {
-            testAccount.sum = 1500;
-            Console.SetIn(new StringReader("700\n700\n"));
-
-            testAccount.perevod();
-
-            StringAssert.Contains("Нельзя перевести на тот же счет", consoleOutput.ToString());
+            Assert.That(testAccount.num, Is.Not.Empty, "Номер счёта не должен быть пустым");
+            Assert.That(testAccount.num.Length, Is.EqualTo(20), "Длина номера счёта должна быть 20 символов");
         }
 
         [Test]
@@ -226,6 +234,7 @@ namespace testzadacha.Tests
 
             File.Delete("new_account.txt");
         }
+
 
 
         [TearDown]

@@ -48,9 +48,10 @@
               "RelativeDocumentMoniker": "testzadacha\\account.cs",
               "ToolTip": "C:\\Users\\User\\Desktop\\testzadacha\\testzadacha\\account.cs",
               "RelativeToolTip": "testzadacha\\account.cs",
-              "ViewState": "AgIAADwAAAAAAAAAAAAcwA0AAAAbAAAAAAAAAA==",
+              "ViewState": "AgIAACIAAAAAAAAAAAAQwBMAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-09T11:44:29.028Z"
+              "WhenOpened": "2025-04-09T11:44:29.028Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -60,7 +61,7 @@
               "RelativeDocumentMoniker": "TestLab\\UnitTest1.cs",
               "ToolTip": "C:\\Users\\User\\Desktop\\testzadacha\\TestLab\\UnitTest1.cs",
               "RelativeToolTip": "TestLab\\UnitTest1.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAC8AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAN0AAAAAAAAAAAA+wPIAAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-09T11:43:39.088Z",
               "EditorCaption": ""
