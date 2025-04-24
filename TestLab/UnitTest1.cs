@@ -235,7 +235,45 @@ namespace testzadacha.Tests
             File.Delete("new_account.txt");
         }
 
+        [Test]
+        public void RemoveFunds_AddFunds_TransferFunds_ShouldSucceed() // снять, добавить и перевести 
+        {
+            Console.SetIn(new StringReader("Иванов Иван\n1500\n")); // открыть счет
+            testAccount.otk();
+            Assert.That(testAccount.name, Is.EqualTo("Иванов Иван"));
+            Assert.That(testAccount.sum, Is.EqualTo(1500));
+            Assert.That(consoleOutput.ToString(), Does.Contain("Готово! Счёт успешно открыт!"));
 
+            Console.SetIn(new StringReader("500\n")); // пополнить счет
+            testAccount.top_up();
+            Assert.That(testAccount.sum, Is.EqualTo(2000));
+            Assert.That(consoleOutput.ToString(), Does.Contain("Баланс: 2000 р."));
+
+            Console.SetIn(new StringReader("200\n")); // снять средства
+            testAccount.umen();
+            Assert.That(testAccount.sum, Is.EqualTo(1800));
+            Assert.That(consoleOutput.ToString(), Does.Contain("Баланс: 1800 р."));
+
+            // Вызов метода перевода
+            testAccount.perevod();
+
+
+            testAccount.sum = 1800;
+            using (var sw = new StringWriter())
+            {
+                Console.SetOut(sw);
+                var input = "300\n1\n";
+                var reader = new StringReader(input);
+                Console.SetIn(reader);
+
+                testAccount.perevod();
+
+                Assert.That(testAccount.sum, Is.EqualTo(1500));
+                StringAssert.Contains("Баланс: 1500 р.", sw.ToString());
+            }
+        }
+
+  
 
         [TearDown]
         public void Cleanup() // очистка ресурсов

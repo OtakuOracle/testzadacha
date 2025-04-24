@@ -43,6 +43,7 @@ namespace testzadacha
             }
         }
 
+
         public void num_gen()
         {
             //Генерация номера счёта, состоящего из случайных чисел.
